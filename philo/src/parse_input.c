@@ -6,18 +6,18 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:27:16 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/12/26 12:44:16 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/12/26 17:54:14 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-static bool inline	is_space(char c)
+static inline bool	is_space(char c)
 {
 	return ((c >= '\t' && c <= '\r') || c == ' ');
 }
 
-static bool inline	is_digit(char c)
+static inline bool	is_digit(char c)
 {
 	return (c >= '0' && c <= '9');
 }
