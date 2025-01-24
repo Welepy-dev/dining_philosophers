@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:17:36 by marcsilv          #+#    #+#             */
-/*   Updated: 2025/01/24 16:48:08 by marcsilv         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:31:10 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	philo_init(t_data *data)
 
 void	data_init(t_data *data)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	data->end_time = false;
@@ -83,18 +83,3 @@ void	data_init(t_data *data)
 	}
 	philo_init(data);
 }
-
-/*
-NOTES:
-
-#1 
-Forks assignment:
-
--PH_ID-	   -FORK_ARR-
-Philo 1:   [1]  [0]  (left: 1, right: 0)
-Philo 2:   [2]  [1]  (left: 1, right: 2)
-Philo 3:   [3]  [2]  (left: 3, right: 2)
-Philo 4:   [4]  [3]  (left: 3, right: 4)
-Philo 5:   [0]  [4]  (left: 4, right: 0) //Wraps around to [0]
-
-*/
