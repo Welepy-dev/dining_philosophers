@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marcsilv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/24 16:48:18 by marcsilv          #+#    #+#             */
+/*   Updated: 2025/01/24 16:51:44 by marcsilv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/philo.h"
 
-void	error_msg(const char *error_msg)
-{
-	printf(MAGENTA "%s\n" RESET, error_msg);
-}
 void	er(char *s)
 {
 	write(2, "Error: ", 7);
@@ -31,8 +39,8 @@ void	*ft_malloc(size_t bytes)
 
 long	gettime(t_time_unit time_unit)
 {
-	struct timeval current_time;
-		
+	struct timeval	current_time;
+
 	if (gettimeofday(&current_time, NULL) != 0)
 	{
 		error_msg("Error: gettimeofday failed");
@@ -90,4 +98,3 @@ void	clean_and_exit(t_data *data)
 	free(data->forks_arr);
 	free(data->philos_arr);
 }
-

@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:17:36 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/12/26 13:48:21 by marcsilv         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:48:08 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	*single_philo(void *index)
 	philo = (t_ph *)index;
 	wait_all_threads(philo->data);
 	set_long(&philo->ph_mutex, &philo->meal_time, gettime(MILLISECONDS));
-	active_thread_counter(&philo->data->access_mutex, &philo->data->active_philos_count);
+	active_thread_counter(&philo->data->access_mutex,
+		&philo->data->active_philos_count);
 	ph_status(TAKES_LEFTFORK, philo);
 	while (!get_bool(&philo->data->access_mutex, &philo->data->end_time))
 		ft_usleep(200, philo->data);
@@ -58,7 +59,7 @@ static void	philo_init(t_data *data)
 		handle_mutex(&philo->ph_mutex, INIT);
 		philo->data = data;
 		assign_forks(philo, data->forks_arr, i);
-		i++; 
+		i++;
 	}
 }
 

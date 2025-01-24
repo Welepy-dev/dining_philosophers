@@ -26,3 +26,7 @@ void	ph_status(t_ph_status status, t_ph *philo)
 	handle_mutex(&philo->data->write_mutex, UNLOCK);
 }
 
+void	error_msg(const char *error_msg)
+{
+	printf(MAGENTA "%s\n" RESET, error_msg);
+}
