@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:38:04 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/12/26 17:19:56 by marcsilv         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:18:00 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	mutex_error_check(int status, t_ftcode ftcode)
 {
-	if (status != 0 && (ftcode == LOCK || ftcode == UNLOCK 
-		|| ftcode == INIT || ftcode == DESTROY))
+	if (status != 0 && (ftcode == LOCK || ftcode == UNLOCK
+			|| ftcode == INIT || ftcode == DESTROY))
 	{
 		error_msg("Mutex error");
 		return ;
@@ -24,7 +24,8 @@ static void	mutex_error_check(int status, t_ftcode ftcode)
 
 static void	thread_error_check(int status, t_ftcode ftcode)
 {
-	if (status != 0  && (ftcode == CREATE || ftcode == JOIN || ftcode == DETACH))
+	if (status != 0 && (ftcode == CREATE || ftcode == JOIN
+			|| ftcode == DETACH))
 	{
 		error_msg("Thread error");
 		return ;
@@ -46,13 +47,14 @@ void	handle_mutex(t_mtx *mtx, t_ftcode ftcode)
 		error_msg("ftcode options: LOCK, UNLOCK, INIT, DESTROY");
 		return ;
 	}
-} 
+}
 
 void	handle_thread(pthread_t *thread_info, void *(*foo)(void *),
 		void *t_data, t_ftcode ftcode)
 {
 	if (ftcode == CREATE)
-		thread_error_check(pthread_create(thread_info, NULL, foo, t_data), ftcode);
+		thread_error_check(pthread_create(thread_info,
+				NULL, foo, t_data), ftcode);
 	else if (ftcode == JOIN)
 		thread_error_check(pthread_join(*thread_info, NULL), ftcode);
 	else if (ftcode == DETACH)

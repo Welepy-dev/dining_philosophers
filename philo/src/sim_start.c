@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:49:07 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/12/26 17:14:45 by marcsilv         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:32:13 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	thinking(t_ph *philo, bool pre_simulation)
 	if (!pre_simulation)
 		ph_status(THINKING, philo);
 	if (philo->data->ph_total % 2 == 0)
-		return ; 
+		return ;
 	eating_time = philo->data->time_to_eat;
 	sleeping_time = philo->data->time_to_sleep;
 	thinking_time = (eating_time * 2) - sleeping_time;
@@ -48,7 +48,8 @@ static void	eating(t_ph *philo)
 	philo->meal_count++;
 	ph_status(EATING, philo);
 	ft_usleep(philo->data->time_to_eat, philo->data);
-	if (philo->data->meals_total > 0 && philo->meal_count == philo->data->meals_total)
+	if (philo->data->meals_total > 0 && philo->meal_count
+		== philo->data->meals_total)
 		set_bool(&philo->ph_mutex, &philo->max_meals, true);
 	handle_mutex(&philo->left_fork->fork_mutex, UNLOCK);
 	handle_mutex(&philo->right_fork->fork_mutex, UNLOCK);
@@ -61,7 +62,8 @@ static void	*dining_philos(void *ph_data)
 	philo = (t_ph *)ph_data;
 	wait_all_threads(philo->data);
 	set_long(&philo->ph_mutex, &philo->meal_time, gettime(MILLISECONDS));
-	active_thread_counter(&philo->data->access_mutex, &philo->data->active_philos_count);
+	active_thread_counter(&philo->data->access_mutex,
+		&philo->data->active_philos_count);
 	synchronize_dining(philo);
 	while (!get_bool(&philo->data->access_mutex, &philo->data->end_time))
 	{
@@ -83,12 +85,14 @@ void	sim_start(t_data *data)
 	if (data->meals_total == 0)
 		return ;
 	else if (data->ph_total == 1)
-		handle_thread(&data->philos_arr[0].ph_thread, single_philo, &data->philos_arr[0], CREATE);
+		handle_thread(&data->philos_arr[0].ph_thread, single_philo,
+			&data->philos_arr[0], CREATE);
 	else
 	{
 		while (i < data->ph_total)
 		{
-			handle_thread(&data->philos_arr[i].ph_thread, dining_philos, &data->philos_arr[i], CREATE);
+			handle_thread(&data->philos_arr[i].ph_thread, dining_philos,
+				&data->philos_arr[i], CREATE);
 			i++;
 		}
 	}
@@ -101,4 +105,3 @@ void	sim_start(t_data *data)
 	set_bool(&data->access_mutex, &data->end_time, true);
 	handle_thread(&data->death_check, NULL, NULL, JOIN);
 }
-

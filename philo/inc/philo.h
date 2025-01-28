@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welepy <welepy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:32:29 by welepy            #+#    #+#             */
-/*   Updated: 2024/12/26 15:23:50 by marcsilv         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:32:13 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_data
 	pthread_t		death_check;
 	t_fork			*forks_arr;
 	t_ph			*philos_arr;
-	t_mtx			access_mutex; //Controll access to bool values by multiple threads, avoiding data races
+	t_mtx			access_mutex;
 	t_mtx			write_mutex;
 }					t_data;
 
@@ -124,6 +124,5 @@ bool		get_bool(t_mtx *mutex, bool *value);
 
 long		gettime(t_time_unit time_unit);
 long		get_long(t_mtx *mutex, long *value);
-
 
 #endif
